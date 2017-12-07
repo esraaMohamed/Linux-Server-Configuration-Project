@@ -1,11 +1,11 @@
-## Linux Server Configuration Project
+# Linux Server Configuration Project
 
 > This project is meant to deploy the [Catalog APP](https://github.com/esraaMohamed/catalog_app)
 on Amazon Lightsail Ubuntu to using a wsgi application that handles the python flask application with python and postgresql database
 
 > The app is also deployed on heroku on [Catalog App](https://sports-catalog-app.herokuapp.com/)
 
-# Server Information:
+## Server Information:
 	Public IP: 34.207.103.98
 	SSH Port: 2200
 	HTTP Port: 80
@@ -13,11 +13,11 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 	Website URL: [Catalog APP](http://34.207.103.98/)
 
 ## Steps:
-# 1] Create a Lightsail Instance using Ubuntu from [Amazon Lightsail Start Page](https://amazonlightsail.com)
+#### 1] Create a Lightsail Instance using Ubuntu from [Amazon Lightsail Start Page](https://amazonlightsail.com)
 
-# 2] Update Ubuntu packages using : 'sudo apt-get update' and 'sudo apt-get upgrade'
+#### 2] Update Ubuntu packages using : 'sudo apt-get update' and 'sudo apt-get upgrade'
 
-# 3] Create New User Grader
+#### 3] Create New User Grader
 		- Generate a key for the default user ubuntu on your local machine
 		using `ssh-keygen` in this case I named the file grader then add it to the authorized_keys for that user
 		on the server using the command `sudo nano .ssh/authorized_keys`
@@ -32,7 +32,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 		   `grader ALL=(ALL:ALL) ALL`
 
 
-# 4] Generate authentication keys for new user grader
+#### 4] Generate authentication keys for new user grader
 		- Generate a key pair on your local machine with: `ssh-keygen` and name the file graderKey
 
 		- Using the ubuntu user enable the PasswordAuthentication to yes so that I can login to the new user grader using its password
@@ -58,17 +58,17 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 		  the PasswordAuthentication to no instead of yes, restart the service once again for the changes to take
 			effect using the command : `$ sudo service ssh restart`
 
-# 5] Change ssh default Port to 2200 instead of 22
+#### 5] Change ssh default Port to 2200 instead of 22
 			- Open the sshd_config file `sudo nano /etc/ssh/sshd_config` and look for the line that contains the Ports and change it to 2200, save the change and then restart the ssh service using command `sudo service ssh restart`
 
     	# Now to connect using ssh we need to use port 2200 instead of 22: `ssh grader@34.207.103.98 -p 2200 -i ~/.ssh/graderKey`
 
-# 6] - Disable SSH for Root User
+#### 6] - Disable SSH for Root User
     	- By opening the sshd_config file using the command : `sudo nano /etc/ssh/sshd_config` look forthe PermitRootLogin line
 			  and change it to no instead of prohibit-password save the file then restart the ssh service using the command :
     	   `sudo service ssh restart`
 
-# 7] - Configure the FireWall
+#### 7] - Configure the FireWall
    		- Change the firewall configurations based on project requirements by using the ufw command as follows:
 			 ` sudo ufw default deny incoming `
 			 ` sudo ufw default allow outgoing `
@@ -83,7 +83,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 			 - remove the ssh rule for port 22
 			 - save your changes
 
-# 8] - Install Apache2 and WSGI
+#### 8] - Install Apache2 and WSGI
 		- Install apache using the command : ` sudo apt-get install apache2` then check that the apache server is running by
 		  visiting the public ip `34.207.103.98`
 
@@ -91,7 +91,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 
 		- Restart apache2 to enable wsgi: `sudo /etc/init.d/apache2 restart`
 
-# 9] - Install Git to clone Catalog App repository
+#### 9] - Install Git to clone Catalog App repository
 		- Install Git using the command: `sudo apt-get install git`
 
 		- Set username using the command: `git config --global user.name <your git username>`
@@ -104,7 +104,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 
 		- Clone the catalog repo to the folder using the command: `sudo git clone https://github.com/esraaMohamed/catalog_app.git`
 
-# 10] - Create the wsgi file catalog-app.wsgi
+#### 10] - Create the wsgi file catalog-app.wsgi
 			- Navigate to the html folder: ` cd /var/www/html`
 
 			- Create the wsgi file using the command: `sudo touch catalog-app.wsgi`
@@ -112,15 +112,17 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 			- Edit the wsgi file using the command: `sudo nano catalog-app.wsgi`
 
 			- Insert these lines:
-		    `import sys
+		    ```
+				 import sys
 			   import logging
 			   logging.basicConfig(stream=sys.stderr)
 			   sys.path.insert(0, "/var/www/catalog-app/catalog_app/catalog/")
 
 				 from catalog import app as application
-				 application.secret_key = 'super_secret_key'`
+				 application.secret_key = 'super_secret_key'
+				 ```
 
-# 11] - Installing Python Dependencies
+#### 11] - Installing Python Dependencies
 		- First we need to install pip in order to install Python packages, to install pip we use the command: `sudo apt-get install python-pip`
 
 		- Then we python using the command : `sudo apt-get install python-psycopg2`
@@ -136,11 +138,12 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 
 		- Start the virtual environment using the command: `$ source venv/bin/activate`
 
-# 12] - Configure apache Virtual Host
+#### 12] - Configure apache Virtual Host
 		- Create the config file for the virtual host using the command : `sudo nano /etc/apache2/sites-available/catalog-app.conf`
 
 		- Copy and paste the following to the file:
-		   `<VirtualHost *:80>
+		   ```
+			  <VirtualHost *:80>
 				ServerName 34.207.103.98
 				ServerAlias http://ec2-34-207-103-98.us-east-1.compute.amazonaws.com/
 				ServerAdmin admin@34.207.103.98
@@ -159,13 +162,13 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 				ErrorLog ${APACHE_LOG_DIR}/error.log
 				LogLevel warn
 				CustomLog ${APACHE_LOG_DIR}/access.log combined
-				</VirtualHost>`
-
+				</VirtualHost>
+				```
 		- Enable the virtual host using the command: `sudo a2ensite catalog-app`
 
 		- Restart apache2 using the command: `sudo service apache2 restart`
 
-# 13] - Installing and Configure Postgresql and changing the python code to use Postgresql
+#### 13] - Installing and Configure Postgresql and changing the python code to use Postgresql
 		- Install python packages to work with psql using the command: `sudo apt-get install libpq-dev python-dev`
 
 		- Install psql using the command: `sudo apt-get install postgresql postgresql-contrib`
@@ -201,7 +204,8 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 
 		- Prevent remote access by opening the pg_hba.conf using the command: `sudo nano /etc/postgresql/9.5/main/pg_hba.conf`
 			and checking to make sure it looks like :
-			`# Database administrative login by Unix domain socket
+			```
+			# Database administrative login by Unix domain socket
 			local   all             postgres                                peer
 
 			# TYPE  DATABASE        USER            ADDRESS                 METHOD
@@ -211,9 +215,10 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 			# IPv4 local connections:
 			host    all             all             127.0.0.1/32            md5
 			# IPv6 local connections:
-			host    all             all             ::1/128                 md5`
+			host    all             all             ::1/128                 md5
+			```
 
-# 13] - Finally Launch the Catalog App
+#### 13] - Finally Launch the Catalog App
 		- First restart the apache service using the command : `sudo service apache2 restart`
 
 		- Then visit the app page at the public IP [The Catalog APP](http://34.207.103.98)
