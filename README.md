@@ -112,15 +112,15 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 			- Edit the wsgi file using the command: `sudo nano catalog-app.wsgi`
 
 			- Insert these lines:
-		    ```
-				 import sys
-			   import logging
-			   logging.basicConfig(stream=sys.stderr)
-			   sys.path.insert(0, "/var/www/catalog-app/catalog_app/catalog/")
+		    	```
+			import sys
+			import logging
+			logging.basicConfig(stream=sys.stderr)
+			sys.path.insert(0, "/var/www/catalog-app/catalog_app/catalog/")
 
-				 from catalog import app as application
-				 application.secret_key = 'super_secret_key'
-				 ```
+			from catalog import app as application
+			application.secret_key = 'super_secret_key'
+			```
 
 #### 11] - Installing Python Dependencies
 		- First we need to install pip in order to install Python packages, to install pip we use the command: `sudo apt-get install python-pip`
@@ -162,7 +162,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 				ErrorLog ${APACHE_LOG_DIR}/error.log
 				LogLevel warn
 				CustomLog ${APACHE_LOG_DIR}/access.log combined
-				</VirtualHost>
+			</VirtualHost>
 				```
 		- Enable the virtual host using the command: `sudo a2ensite catalog-app`
 
