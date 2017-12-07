@@ -1,17 +1,19 @@
 ## Linux Server Configuration Project
 
-> This project is meant to deploy the (Catalogs APP)[https://github.com/esraaMohamed/catalog_app]
+> This project is meant to deploy the [Catalog APP](https://github.com/esraaMohamed/catalog_app)
 on Amazon Lightsail Ubuntu to using a wsgi application that handles the python flask application with python and postgresql database
+
+> The app is also deployed on heroku on [Catalog App](https://sports-catalog-app.herokuapp.com/)
 
 # Server Information:
 	Public IP: 34.207.103.98
 	SSH Port: 2200
 	HTTP Port: 80
 	NTP Port: 123
-	Website URL: [Catalog APP](http://34.207.103.98)
+	Website URL: [Catalog APP](http://34.207.103.98/)
 
 ## Steps:
-# 1] Create a Lightsail Instance using Ubuntu from (Amazon Lightsail Start Page)[https://amazonlightsail.com]
+# 1] Create a Lightsail Instance using Ubuntu from [Amazon Lightsail Start Page](https://amazonlightsail.com)
 
 # 2] Update Ubuntu packages using : 'sudo apt-get update' and 'sudo apt-get upgrade'
 
@@ -218,19 +220,19 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 
 
 ## Helpful resources
-- (Linux Server Configuration)[https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4331066009/concepts/48010894470923]
+- [Linux Server Configuration](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4331066009/concepts/48010894470923)
 
-- (Installing Git)[https://git-scm.com/book/en/v2/Getting-Started-Installing-Git]
+- [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-- (Installing Pip)[https://docs.python.org/3/installing/index.html]
+- [Installing Pip](https://docs.python.org/3/installing/index.html)
 
-- (Installing Python Virtual Environments)[http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/]
+- [Installing Python Virtual Environments](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/)
 
-- (mod_wsgi and Apache with a virtualenv Python environment) [https://www.digitalocean.com/community/tutorials/how-to-run-django-with-mod_wsgi-and-apache-with-a-virtualenv-python-environment-on-a-debian-vps]
+- [mod_wsgi and Apache with a virtualenv Python environment](https://www.digitalocean.com/community/tutorials/how-to-run-django-with-mod_wsgi-and-apache-with-a-virtualenv-python-environment-on-a-debian-vps)
 
-- (Install Postgresql)[https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04]
-[https://wixelhq.com/blog/how-to-install-postgresql-on-ubuntu-remote-access]
+- [Install Postgresql](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
+(https://wixelhq.com/blog/how-to-install-postgresql-on-ubuntu-remote-access)
 
-- (Secure Postgresql)[https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps]
+- [Secure Postgresql](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
-- (Udacity Forums)[https://discussions.udacity.com/search?q=%20unable%20to%20open%20database%20file]
+- [Udacity Forums](https://discussions.udacity.com/search?q=%20unable%20to%20open%20database%20file)
