@@ -72,10 +72,10 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
    		- Change the firewall configurations based on project requirements by using the ufw command as follows:
 			 ` sudo ufw default deny incoming `
 			 ` sudo ufw default allow outgoing `
-		   ` sudo ufw allow 2200/tcp `
-		   ` sudo ufw allow 80/tcp `
-		   ` sudo ufw allow 123/udp `
-		   ` sudo ufw enable `
+		   	 ` sudo ufw allow 2200/tcp `
+		  	 ` sudo ufw allow 80/tcp `
+		  	 ` sudo ufw allow 123/udp `
+		  	 ` sudo ufw enable `
 
 		 - Change the firewall settings on the Lightsail instance by:
 		 	 - add a new rule Custom with port number 2200 on tcp
