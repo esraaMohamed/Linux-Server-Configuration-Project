@@ -8,7 +8,7 @@ on Amazon Lightsail Ubuntu to using a wsgi application that handles the python f
 	SSH Port: 2200
 	HTTP Port: 80
 	NTP Port: 123
-	Website URL: (Catalog APP)[http://34.207.103.98]
+	Website URL: [Catalog APP](http://34.207.103.98)
 
 ## Steps:
 # 1] Create a Lightsail Instance using Ubuntu from (Amazon Lightsail Start Page)[https://amazonlightsail.com]
